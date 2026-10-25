@@ -104,11 +104,11 @@ File: week-5-transfer-learning (3).ipynb
 
 Next: Week 6 proposal
 
-Problem: Late-spotted leaf diseases (blight, common rust, gray leaf spot) cost maize farmers part of their harvest. I want a model that names the disease from one phone photo of a leaf.
+Problem: Pneumonia is a leading cause of illness in children, and reading chest X-rays takes a trained radiologist, who may not be available everywhere. I want to test whether a transfer learning model can tell a normal chest X-ray from a pneumonia one, as a learning project and not as a diagnostic tool.
 
-Who it helps: Farmers and agriculture extension workers.
+Who it could help: Clinics with few radiologists, as a second opinion that flags X-rays for a doctor to check first.
 
-Data: Corn or Maize Leaf Disease Dataset (Kaggle, smaranjitghose), 4 classes and 4,188 images: Common Rust 1,306, Gray Leaf Spot 574, Blight 1,146, Healthy 1,162. It is built from PlantVillage and PlantDoc, and credit goes to the original authors.
-https://www.kaggle.com/datasets/smaranjitghose/corn-or-maize-leaf-disease-dataset
+Data: Chest X-Ray Images (Pneumonia) on Kaggle (Paul Mooney), 5,863 X-ray images in 2 classes, Normal and Pneumonia (5,216 train, 624 test, 16 validation). License CC BY 4.0, so I will cite Kermany et al., Cell, 2018.
+https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
 
-Plan: Same recipe as this week (freeze, train the head, fine-tune the last block), but with my own train, validation and test split since the dataset has none. Gray Leaf Spot has only 574 photos, so I will report per-class recall and not only accuracy. I will also check whether a model trained on mostly lab-style photos still works on real field photos.
+Plan: Reuse the Week 5 pipeline (ResNet-18, feature extraction then fine-tuning). The validation folder has only 16 images, so I will make my own train, validation and test split. The classes are not balanced, so I will report recall for pneumonia and not only accuracy. I will not use horizontal flip, since it moves the heart to the wrong side of the X-ray.
